@@ -1,5 +1,10 @@
 #include "prime.h"
 
+PrimeNum::PrimeNum(int val = 0, unsigned long long int num = 0) {
+    this->val = val;
+    this->num = num;
+}
+
 /**
  * @brief Questa funzione calcola il più grande fattore primo del numero dato. Credits: hk (ProjectEuler)
  * 

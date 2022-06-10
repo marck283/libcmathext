@@ -1,4 +1,11 @@
 #include "sum.h"
+#include <algorithm>
+
+Sum::Sum(int val, int val1 = 0, int val2 = 0) {
+    valueA = val;
+    valueB = val1;
+    target = val2;
+}
 
 /**
  * @brief Questa funzione prende in input un valore intero positivo e restituisce la somma di tutti i valori interi

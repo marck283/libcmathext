@@ -1,6 +1,19 @@
 #include "polygon.h"
 
 /**
+ * @brief Construct a new Polygon object
+ * 
+ * @param polygon 
+ * @param value 
+ * @param value1 
+*/
+Polygon::Polygon(std::string polygon, int value, int value1) {
+    this->polygon = polygon;
+    this->value = value;
+    this->value1 = value1;
+}
+
+/**
  * @brief Questa funzione permette di calcolare l'area di un triangolo.
  * 
  * @param base 

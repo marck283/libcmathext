@@ -1,5 +1,5 @@
-#ifndef __GAUSS_H__
-#define __GAUSS_H__
+#ifndef GAUSS_H
+#define GAUSS_H
 
 #include <iostream>
 
@@ -13,7 +13,6 @@ class Gauss {
     }
     
     long long int gaussSum(long long int value);
-    long long int gaussSum_s(long long int value);
 };
 
 #endif

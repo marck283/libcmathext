@@ -1,46 +1,22 @@
-#ifndef __MCM_H__
-#define __MCM_H__
+#ifndef MCM_H
+#define MCM_H
 
 #include <iostream>
 #include <vector>
 
 class MCM {
     private:
-    int a, b;
-    std::vector<int>* vect;
+        int a, b;
+        std::vector<int>* vect;
     
-    void createVect(std::vector<int>* vect) {
-        if(vect != nullptr) {
-            this->vect = new std::vector<int>(vect->size());
-            for(int i = 0; i < vect->size(); i++) {
-                this->vect->at(i) = vect->at(i);
-            }
-        } else {
-            this->vect = nullptr;
-        }
-    }
+        void createVect(std::vector<int>* vect);
     
     public:    
-    MCM(int a, int b) {
-        this->a = a;
-        this->b = b;
-        createVect(nullptr);
-    }
-    
-    MCM(std::vector<int>* vect) {
-        a = -1;
-        b = -1;
-        createVect(vect);
-    }
-    
-    MCM(const MCM& mcm) {
-        a = mcm.a;
-        b = mcm.b;
-        createVect(mcm.vect);
-    }
-    
-    int mcm();
-    int mcmVect();
+        explicit MCM(int a, int b);
+        explicit MCM(std::vector<int>* vect);
+        MCM(const MCM& mcm); //Costruttore di copia
+        int mcm();
+        int mcmVect();
 };
 
 #endif

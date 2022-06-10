@@ -1,5 +1,5 @@
-#ifndef __FIBONACCI_H__
-#define __FIBONACCI_H__
+#ifndef FIBONACCI_H
+#define FIBONACCI_H
 
 #include <iostream>
 
@@ -13,7 +13,6 @@ class Fibonacci {
     }
     int sumEvenFib(int target);
     int binet(int index);
-    int binet_s(int index);
 };
 
 #endif

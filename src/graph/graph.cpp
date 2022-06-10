@@ -1,4 +1,5 @@
 #include "graph.h"
+#include <algorithm>
 
 /**
  * @brief This function finds how many vertices have an odd degree in the given graph.
@@ -8,11 +9,11 @@
 int Graph::oddVertNum() {
     int oddCounter = 0;
 
-    for(int i = 0; i < vect->size(); i++) {
-        if(vect->at(i).evenVertex() == false) {
-            oddCounter++;
+    std::for_each(vect->begin(), vect->end(), [&oddCounter](Node n) {
+        if(!n.evenVertex()) {
+            ++oddCounter;
         }
-    }
+    });
 
     return oddCounter;
 }
@@ -26,10 +27,7 @@ int Graph::oddVertNum() {
  * @return bool 
  */
 bool Graph::eulerianGraph() {
-    if(oddVertNum() == 0) {
-        return true;
-    }
-    return false;
+    return oddVertNum() == 0;
 }
 
 /**
@@ -40,8 +38,5 @@ bool Graph::eulerianGraph() {
  * @return bool 
  */
 bool Graph::eulerianPath() {
-    if(oddVertNum() <= 2) {
-        return true;
-    }
-    return false;
+    return oddVertNum() <= 2;
 }
