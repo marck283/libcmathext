@@ -1,5 +1,5 @@
 #include "mcm.h"
-#include "mcd.h"
+#include "../mcd/mcd.h"
 
 int MCM::mcm() {
     MCD* tempRes = new MCD(a, b);
