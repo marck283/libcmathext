@@ -17,7 +17,8 @@ double Polygon::triangleArea(int base, int height) {
  * 1) SQUARE;
  * 2) RECTANGLE;
  * 3) RHOMBUS;
- * 4) tutti i poligoni il cui nome inglese termina in "GON";
+ * 4) PARALLELOGRAM;
+ * 5) tutti i poligoni il cui nome inglese termina in "GON";
  * Tutti gli altri poligoni (se ve ne sono) sono ancora non supportati e verranno aggiunti in seguito.
  * 
  * @param polygon 
