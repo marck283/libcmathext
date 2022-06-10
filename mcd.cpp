@@ -1,5 +1,6 @@
 #include "mcd.h"
 #include <numeric>
+#include <algorithm>
 
 /**
  * @brief Questa funzione implementa l'estensione dell'algoritmo di Euclide per il calcolo del Massimo Comun Divisore nel caso in cui si abbiano
