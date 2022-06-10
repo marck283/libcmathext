@@ -1,5 +1,6 @@
 #include "sum.h"
 #include <algorithm>
+#include <stdexcept>
 
 Sum::Sum(int val, int val1 = 0, int val2 = 0) {
     valueA = val;
@@ -10,40 +11,24 @@ Sum::Sum(int val, int val1 = 0, int val2 = 0) {
 /**
  * @brief Questa funzione prende in input un valore intero positivo e restituisce la somma di tutti i valori interi
  * positivi dispari compresi tra 1 e quel valore (altrimenti, se il valore in input è nullo, restituisce zero).
- * ATTENZIONE: se il valore in input è negativo o pari a zero, la funzione ritorna -1. Tuttavia, non compie alcun
- * controllo sul verificarsi di una condizione di overflow. Si consiglia, pertanto, di utilizzare la funzione oddIntSum_s().
+ * @warning La funzione lancia un'eccezione se il valore in input è negativo o pari a zero, o se si verifica una
+ * condizione di overflow aritmetico.
+ * @exception std::overflow_error Eccezione lanciata quando si verifica una condizione di overflow aritmetico.
+ * @exception std::invalid_argument Eccezione lanciata quando il valore fornito in input alla funzione è negativo o nullo.
  * 
  * @param value 
  * @return int 
  */
 int Sum::oddIntSum(int value) {
     if(value >= 0) {
-        return value*value;
-    }
-    return -1;
-}
-
-/**
- * @brief Questa funzione prende in input un valore intero positivo e restituisce la somma di tutti i valori interi
- * positivi dispari compresi tra 1 e quel valore. ATTENZIONE: se il valore in input è negativo o pari a zero,
- * la funzione ritorna 0. Inoltre, la funzione restituisce NULL se è stato generato un overflow.
- * 
- * @param value 
- * @return int 
- */
-int Sum::oddIntSum_s(int value) {
-    /* Notare che si sarebbe potuta utilizzare anche la funzione pow() inclusa in cmath, ma, per questioni di velocità di
-    scrittura del codice e di performance, è stato preferito l'utilizzo dell'operatore di moltiplicazione. */
-
-    if(value > 0) {
-        int prod = value*value;
-
-        if(prod >= 0) {
-            return prod;
+        try {
+            return value*value;
+        } catch(std::overflow_error& e) {
+            throw new std::overflow_error("Arithmetic overflow occurred.");
         }
-        return NULL;
+    } else {
+        throw new std::invalid_argument("Input value cannot be negative or zero.");
     }
-    return 0;
 }
 
 /**
@@ -51,42 +36,32 @@ int Sum::oddIntSum_s(int value) {
  * compresi tra 1 e quel valore. ATTENZIONE: se il valore in input è negativo o pari a zero, la funzione ritorna 0. Tuttavia,
  * non compie alcun controllo sul verificarsi di una condizione di overflow. Si consiglia, pertanto, di utilizzare la funzione
  * evenIntSum_s().
+ * @warning Questa funzione lancia un'eccezione quando si verifica una condizione di overflow aritmetico o quando il valore fornito
+ * in input è negativo o pari a zero.
+ * @exception std::overflow_error Eccezione lanciata quando si verifica una condizione di overflow aritmetico.
+ * @exception std::invalid_argument Eccezione lanciata quando il valore fornito in input alla funzione è negativo o pari a zero.
  * 
  * @param value 
  * @return int 
  */
 int Sum::evenIntSum(int value) {
     if(value > 0) {
-        return value*(value + 1);
-    }
-    return 0;
-}
-
-/**
- * @brief Questa funzione prende in input un valore intero positivo e ritorna la somma di tutti i valori interi positivi pari
- * compresi tra 1 e quel valore. ATTENZIONE: se il valore in input è negativo o pari a zero, la funzione ritorna 0. Inoltre,
- * la funzione restituisce NULL se è stato generato un overflow.
- * 
- * @param value 
- * @return int 
- */
-int Sum::evenIntSum_s(int value) {
-    if(value > 0) {
-        int result = value*(value + 1);
-
-        if(result >= 0) {
-            return result; 
+        try {
+            return value*(value + 1);
+        } catch(std::overflow_error& e) {
+            throw new std::overflow_error("Arithmetic overflow occurred.");
         }
-        return NULL;
+    } else {
+        throw new std::invalid_argument("Input value cannot be negative or zero.");
     }
-    return 0;
 }
 
 /**
  * @brief Funzione wrapper per calcolare la somma dei valori multipli di valueA o valueB (i due valori in input) ed inferiori
  * al valore obiettivo (target). Poiché utilizzata per chiamare un'altra funzione (sumDivisibleBy()), queste devono essere entrambe
- * riportate nel codice del programma. ATTENZIONE: questa funzione non pone alcun controllo sulle condizioni di overflow che si possono
- * generare durante il suo utilizzo.
+ * riportate nel codice del programma.
+ * @warning Questa funzione lancia un'eccezione quando si verifica una condizione di overflow aritmetico.
+ * @exception std::overflow_error Eccezione lanciata quando si verifica una condizione di overflow aritmetico.
  * 
  * @param valueA 
  * @param valueB 
@@ -94,7 +69,11 @@ int Sum::evenIntSum_s(int value) {
  * @return int 
  */
 int Sum::sumMultiples(int valueA, int valueB, int target) {
-    return sumDivisibleBy(valueA, target) + sumDivisibleBy(valueB, target) - sumDivisibleBy(valueA*valueB, target);
+    try {
+        return sumDivisibleBy(valueA, target) + sumDivisibleBy(valueB, target) - sumDivisibleBy(valueA*valueB, target);
+    } catch(std::overflow_error& e) {
+        throw new std::overflow_error("Arithmetic overflow occurred.");
+    }
 }
 
 /**
