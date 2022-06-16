@@ -5,7 +5,7 @@
 /**
  * @brief Questa libreria è intesa come raccolta di funzioni e trucchi matematici per risolvere problemi (o parti di problemi) che, normalmente,
  * risulterebbero computazionalmente complessi.
- * NOTA BENE: per alcune funzioni, è presente anche una variante "non sicura", cioè che non compie controlli su condizioni di overflow.
+ * @remark Per alcune funzioni, è presente anche una variante "non sicura", cioè che non compie controlli su condizioni di overflow.
  * Queste sono state incluse perché possono risultare utili nel campo della programmazione competitiva (es.: ICPC, Google HashCode, etc.).
  */
 
